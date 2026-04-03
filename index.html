@@ -12,11 +12,21 @@
 <body>
     <div id="map"></div>
     <div id="sidebar">
-        <h1>UBC Study Spots</h1>
-        <p id="status">Loading study spots...</p>
-        <ul id="spots-list">
-            <!-- Study spots will be loaded here by JavaScript -->
-        </ul>
+        <h1 id="sidebar-title">UBC Study Spots</h1>
+        <div id="sidebar-content">
+            <p id="status">Loading study spots...</p>
+            <ul id="spots-list">
+                <!-- Study spots will be loaded here by JavaScript -->
+            </ul>
+        </div>
+        <div id="spot-detail">
+            <h2 id="detail-name">Spot Name</h2>
+            <p><span class="detail-label">Distance:</span> <span id="detail-distance">0 km away</span></p>
+            <p id="detail-description">Description of the spot goes here.</p>
+            <p><span class="detail-label">Capacity:</span> <span id="detail-capacity">Moderate</span></p>
+            <p><span class="detail-label">Features:</span> <span id="detail-features">Wi-Fi, Power Outlets</span></p>
+            <button id="back-to-list">Back to List</button>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

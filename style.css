@@ -2,6 +2,7 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
+    width: 100%; /* Added this line to ensure full width */
     font-family: Arial, sans-serif;
     display: flex;
 }
@@ -18,16 +19,26 @@ body, html {
     padding: 20px;
     overflow-y: auto;
     box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    display: flex; /* Added to manage internal layout of sidebar */
+    flex-direction: column; /* Arrange children vertically */
 }
 
-h1 {
+#sidebar h1 {
     font-size: 24px;
     color: #002145;
+    margin-top: 0;
+}
+
+#status {
+    margin-bottom: 15px;
+    color: #555;
 }
 
 #spots-list {
     list-style: none;
     padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Allow list to take available space */
 }
 
 .spot-item {
@@ -36,6 +47,12 @@ h1 {
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: pointer; /* Indicate it's clickable */
+    transition: background-color 0.2s ease;
+}
+
+.spot-item:hover {
+    background-color: #e9e9e9;
 }
 
 .spot-item h3 {
@@ -47,4 +64,49 @@ h1 {
     margin: 0;
     color: #666;
     font-size: 14px;
+}
+
+/* Styles for the new detail view */
+#spot-detail {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+#spot-detail h2 {
+    color: #002145;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+#spot-detail p {
+    margin-bottom: 8px;
+    color: #333;
+}
+
+#spot-detail .detail-label {
+    font-weight: bold;
+    color: #002145;
+}
+
+#back-to-list {
+    background-color: #002145;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    align-self: flex-start; /* Align button to the start */
+}
+
+#back-to-list:hover {
+    background-color: #003366;
+}
+
+/* User location marker style */
+.user-marker {
+    font-size: 24px;
+    text-align: center;
+    line-height: 1;
 }
