@@ -4,19 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UBC Study Spots</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-          integrity="sha512-xod9/PC6PzL+y+6+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+g=="
-          crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-            integrity="sha512-XQoYMqMTK8LvdxXYG4yYx+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+b+g+g=="
-            crossorigin=""></script>
+    <!-- Use standard Leaflet CDN without integrity hashes for better compatibility during development -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="map"></div>
     <div id="sidebar">
         <h1>UBC Study Spots</h1>
-        <p>Finding nearby study spots...</p>
+        <p id="status">Loading study spots...</p>
         <ul id="spots-list">
             <!-- Study spots will be loaded here by JavaScript -->
         </ul>

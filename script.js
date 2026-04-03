@@ -33,9 +33,12 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
 
 function updateSpotList(userLat, userLng) {
     const listElement = document.getElementById('spots-list');
-    const sidebarText = document.querySelector('#sidebar p');
+    const statusText = document.getElementById('status');
     listElement.innerHTML = '';
-    sidebarText.textContent = "Nearby Study Spots:";
+    statusText.textContent = "Nearby Study Spots:";
+
+    // Clear existing markers (except user location if needed)
+    // For now, we'll just add markers to the map
 
     // Add distance to each spot and sort
     const sortedSpots = studySpots.map(spot => {
@@ -66,17 +69,28 @@ function updateSpotList(userLat, userLng) {
 
 // Get user location
 if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(position => {
-        const { latitude, longitude } = position.coords;
-        map.setView([latitude, longitude], 15);
-        L.marker([latitude, longitude], {icon: L.divIcon({className: 'user-marker', html: '📍'})}).addTo(map)
-            .bindPopup("You are here").openPopup();
-        updateSpotList(latitude, longitude);
-    }, () => {
-        alert("Geolocation failed. Showing default UBC locations.");
-        updateSpotList(49.2606, -123.2460); // Default to center of UBC
-    });
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const { latitude, longitude } = position.coords;
+            map.setView([latitude, longitude], 15);
+            L.circleMarker([latitude, longitude], {
+                radius: 8,
+                fillColor: "#3388ff",
+                color: "#fff",
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 0.8
+            }).addTo(map).bindPopup("You are here").openPopup();
+            updateSpotList(latitude, longitude);
+        },
+        (error) => {
+            console.error("Geolocation error:", error);
+            alert("Geolocation denied or unavailable. Showing UBC campus study spots.");
+            updateSpotList(49.2606, -123.2460); // Default to center of UBC
+        },
+        { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+    );
 } else {
-    alert("Your browser doesn't support geolocation.");
+    alert("Your browser doesn't support geolocation. Showing UBC campus study spots.");
     updateSpotList(49.2606, -123.2460); // Default to center of UBC
 }
