@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UBC Study Spots</title>
-    <!-- Use standard Leaflet CDN without integrity hashes for better compatibility during development -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -21,10 +20,29 @@
         </div>
         <div id="spot-detail">
             <h2 id="detail-name">Spot Name</h2>
-            <p><span class="detail-label">Distance:</span> <span id="detail-distance">0 km away</span></p>
-            <p id="detail-description">Description of the spot goes here.</p>
-            <p><span class="detail-label">Capacity:</span> <span id="detail-capacity">Moderate</span></p>
-            <p><span class="detail-label">Features:</span> <span id="detail-features">Wi-Fi, Power Outlets</span></p>
+            <div id="detail-metrics">
+                <p><span class="detail-label">Status:</span> <span id="detail-status">Really Good</span></p>
+                <p><span class="detail-label">Busy-ness:</span> <span id="detail-busy">Usually isolated</span></p>
+            </div>
+            <p><span id="detail-distance">0 km away</span></p>
+
+            <p id="detail-description"></p>
+
+            <div class="detail-section">
+                <h3>Features</h3>
+                <div id="detail-features" class="feature-container"></div>
+            </div>
+
+            <div class="detail-section">
+                <h3>Bonuses</h3>
+                <div id="detail-bonuses" class="feature-container"></div>
+            </div>
+
+            <div class="detail-section">
+                <h3>Notes</h3>
+                <p id="detail-notes"></p>
+            </div>
+
             <button id="back-to-list">Back to List</button>
         </div>
     </div>
