@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UBC Study Spots | Find Your Space</title>
-    <!-- Modern Typography: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,32 +17,67 @@
     <aside id="sidebar">
         <header class="sidebar-header">
             <h1 id="sidebar-title">UBC Study Spots</h1>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search spots..." aria-label="Search study spots">
+                <button id="filter-btn" class="icon-btn" title="Filter Options" aria-label="Toggle filters">⚙️</button>
+            </div>
+
+            <div id="filter-modal" class="filter-modal">
+                <h3>Filter Spots</h3>
+                <div class="filter-grid">
+                    <div class="filter-group">
+                        <label for="filter-status">Status</label>
+                        <select id="filter-status">
+                            <option value="all">All</option>
+                            <option value="Really Good!">Really Good!</option>
+                            <option value="Pretty Good">Pretty Good</option>
+                            <option value="Okay...">Okay...</option>
+                            <option value="Not great">Not great</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filter-busy">Busy-ness</label>
+                        <select id="filter-busy">
+                            <option value="all">All</option>
+                            <option value="Usually isolated">Usually isolated</option>
+                            <option value="There's some people here">There's some people here</option>
+                            <option value="Very popular">Very popular</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filter-group checkbox-group">
+                    <label><input type="checkbox" id="filter-microwave"> Microwave</label>
+                    <label><input type="checkbox" id="filter-plugs"> Plugs</label>
+                    <label><input type="checkbox" id="filter-private"> Private</label>
+                    <label><input type="checkbox" id="filter-bookable"> Bookable</label>
+                    <label><input type="checkbox" id="filter-tv"> Projector/TV</label>
+                    <label><input type="checkbox" id="filter-drinks"> Free Drinks</label>
+                    <label><input type="checkbox" id="filter-view"> Good View</label>
+                    <label><input type="checkbox" id="filter-couches"> Couches</label>
+                </div>
+                <button id="apply-filters" class="btn-primary-small">Apply Filters</button>
+            </div>
+
             <p id="status" class="status-msg">Locating you...</p>
         </header>
 
         <main id="sidebar-content">
-            <ul id="spots-list" class="spots-container">
-                <!-- Spots injected here -->
-            </ul>
+            <ul id="spots-list" class="spots-container"></ul>
         </main>
 
         <section id="spot-detail" class="detail-view">
             <div class="detail-header">
                 <h2 id="detail-name">Spot Name</h2>
-                <div id="detail-metrics" class="metrics-row">
-                    <!-- Dynamic badges -->
-                </div>
+                <div id="detail-metrics" class="metrics-row"></div>
                 <div id="detail-distance-walking" class="distance-badge">
-                    <span class="icon">📍</span> <span id="distance-text">0 km away</span> • <span id="walk-text">0 mins</span>
+                    <span class="icon" aria-hidden="true">📍</span> <span id="distance-text">0 km away</span> • <span id="walk-text">0 mins</span>
                 </div>
             </div>
 
             <div class="detail-body">
                 <p id="detail-description" class="description-text"></p>
 
-                <div id="detail-list" class="feature-list">
-                    <!-- Feature rows injected here -->
-                </div>
+                <div id="detail-list" class="feature-list-modern"></div>
 
                 <div class="notes-section">
                     <h4>Notes</h4>
@@ -56,7 +87,7 @@
 
             <footer class="detail-footer">
                 <button id="back-to-list" class="btn-primary">
-                    <span class="arrow">←</span> Back to Discovery
+                    <span class="arrow" aria-hidden="true">←</span> Back to Discovery
                 </button>
             </footer>
         </section>
