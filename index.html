@@ -3,49 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UBC Study Spots</title>
+    <title>UBC Study Spots | Find Your Space</title>
+    <!-- Modern Typography: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="map"></div>
-    <div id="sidebar">
-        <h1 id="sidebar-title">UBC Study Spots</h1>
-        <div id="sidebar-content">
-            <p id="status">Loading study spots...</p>
-            <ul id="spots-list">
-                <!-- Study spots will be loaded here by JavaScript -->
+
+    <aside id="sidebar">
+        <header class="sidebar-header">
+            <h1 id="sidebar-title">UBC Study Spots</h1>
+            <p id="status" class="status-msg">Locating you...</p>
+        </header>
+
+        <main id="sidebar-content">
+            <ul id="spots-list" class="spots-container">
+                <!-- Spots injected here -->
             </ul>
-        </div>
-        <div id="spot-detail">
-            <h2 id="detail-name">Spot Name</h2>
-            <div id="detail-metrics">
-                <p><span class="detail-label">Status:</span> <span id="detail-status">Really Good</span></p>
-                <p><span class="detail-label">Busy-ness:</span> <span id="detail-busy">Usually isolated</span></p>
-            </div>
-            <p><span id="detail-distance">0 km away</span></p>
+        </main>
 
-            <p id="detail-description"></p>
-
-            <div class="detail-section">
-                <h3>Features</h3>
-                <div id="detail-features" class="feature-container"></div>
+        <section id="spot-detail" class="detail-view">
+            <div class="detail-header">
+                <h2 id="detail-name">Spot Name</h2>
+                <div id="detail-metrics" class="metrics-row">
+                    <!-- Dynamic badges -->
+                </div>
+                <div id="detail-distance-walking" class="distance-badge">
+                    <span class="icon">📍</span> <span id="distance-text">0 km away</span> • <span id="walk-text">0 mins</span>
+                </div>
             </div>
 
-            <div class="detail-section">
-                <h3>Bonuses</h3>
-                <div id="detail-bonuses" class="feature-container"></div>
+            <div class="detail-body">
+                <p id="detail-description" class="description-text"></p>
+
+                <div id="detail-list" class="feature-list">
+                    <!-- Feature rows injected here -->
+                </div>
+
+                <div class="notes-section">
+                    <h4>Notes</h4>
+                    <p id="detail-notes"></p>
+                </div>
             </div>
 
-            <div class="detail-section">
-                <h3>Notes</h3>
-                <p id="detail-notes"></p>
-            </div>
+            <footer class="detail-footer">
+                <button id="back-to-list" class="btn-primary">
+                    <span class="arrow">←</span> Back to Discovery
+                </button>
+            </footer>
+        </section>
+    </aside>
 
-            <button id="back-to-list">Back to List</button>
-        </div>
-    </div>
     <script src="script.js"></script>
 </body>
 </html>
