@@ -1,28 +1,69 @@
+/*
+    UBC Study Spots - Modern Design System
+    --------------------------------------
+    Established via Gemini Chat CPEN 221.
+    Design Principles: Stunning, Sheek, Clean, and Functional.
+*/
+
 :root {
+    /* Brand Colors (UBC Blue and Accent Blue) */
     --primary-color: #002145;
     --accent-color: #3388ff;
     --text-color: #1a1a1a;
     --secondary-text: #666;
     --bg-color: #ffffff;
+
+    /* UI components */
     --sidebar-bg: rgba(255, 255, 255, 0.98);
     --border-radius: 12px;
     --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    /* Modern Sans-serif Typography */
     --font-family: 'Inter', sans-serif;
+
+    /* Amenity Feedback Colors */
     --green-bg: #e8f5e9;
     --green-text: #2e7d32;
     --red-bg: #ffebee;
     --red-text: #c62828;
+    --blue-bg: #e3f2fd;
+    --blue-text: #1565c0;
 }
 
 * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
 
-body, html { margin: 0; padding: 0; height: 100%; width: 100%; font-family: var(--font-family); background: #f0f2f5; overflow: hidden; }
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: var(--font-family);
+    background: #f0f2f5;
+    overflow: hidden;
+}
+
+/* Layout: Map-First Discovery */
 body { display: flex; flex-direction: row; }
 
 #map { flex: 2; height: 100%; z-index: 1; position: relative; }
-#sidebar { position: relative; flex: 1; min-width: 400px; max-width: 500px; height: 100%; background: var(--sidebar-bg); backdrop-filter: blur(12px); border-left: 1px solid rgba(0, 0, 0, 0.05); display: flex; flex-direction: column; z-index: 100; }
 
+/* Sidebar: discovery controls and data display */
+#sidebar {
+    position: relative;
+    flex: 1;
+    min-width: 400px;
+    max-width: 500px;
+    height: 100%;
+    background: var(--sidebar-bg);
+    backdrop-filter: blur(12px);
+    border-left: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+}
+
+/* Mobile Responsiveness: Top-Bottom Stack */
 @media (max-width: 768px) {
     body { flex-direction: column-reverse; }
     #map { flex: 1.2; width: 100%; }
@@ -32,14 +73,36 @@ body { display: flex; flex-direction: row; }
 .sidebar-header { padding: 24px; border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
 h1 { font-size: 24px; font-weight: 800; color: var(--primary-color); margin: 0 0 20px 0; letter-spacing: -0.02em; }
 
+/* Search and Customization UI */
 .search-bar { display: flex; gap: 10px; margin-bottom: 15px; }
 #search-input { flex: 1; padding: 12px 16px; border: 2px solid #eee; border-radius: 10px; font-size: 15px; font-weight: 500; outline: none; transition: border-color 0.2s; }
 #search-input:focus { border-color: var(--accent-color); }
 
-.icon-btn { background: #eee; border: none; width: 45px; height: 45px; border-radius: 10px; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+.icon-btn {
+    background: #eee;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
 .icon-btn:hover { background: #e0e0e0; }
 
-.filter-modal { display: none; background: white; border: 1px solid #ddd; padding: 20px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+/* Filter Modal: 2-column Grid */
+.filter-modal {
+    display: none;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 .filter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
 .filter-group label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #999; margin-bottom: 5px; }
 .filter-group select { width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ddd; font-family: var(--font-family); }
@@ -49,6 +112,7 @@ h1 { font-size: 24px; font-weight: 800; color: var(--primary-color); margin: 0 0
 .btn-primary-small { width: 100%; padding: 12px; background: var(--primary-color); color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: var(--transition); }
 .btn-primary-small:hover { background: var(--accent-color); }
 
+/* List Rendering: Interactive Cards */
 #sidebar-content { flex: 1; overflow-y: auto; padding: 20px; }
 .spots-container { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
 
@@ -59,7 +123,16 @@ h1 { font-size: 24px; font-weight: 800; color: var(--primary-color); margin: 0 0
 .badge-row { display: flex; gap: 6px; flex-wrap: wrap; }
 .badge { padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
 
-.detail-view { display: none; position: absolute; inset: 0; background: white; flex-direction: column; z-index: 200; animation: slideIn 0.3s ease-out; }
+/* Detail View: Slide-in Presentation */
+.detail-view {
+    display: none;
+    position: absolute;
+    inset: 0;
+    background: white;
+    flex-direction: column;
+    z-index: 200;
+    animation: slideIn 0.3s ease-out;
+}
 @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
 
 .detail-header { padding: 24px; border-bottom: 1px solid #f0f0f0; }
@@ -69,11 +142,14 @@ h1 { font-size: 24px; font-weight: 800; color: var(--primary-color); margin: 0 0
 .detail-body { flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 24px; }
 .description-text { font-size: 15px; line-height: 1.6; color: #444; margin: 0; font-style: italic; }
 
+/* Feature Row styling: Big icons, clear colored button backgrounds */
 .feature-list-modern { display: grid; gap: 10px; }
 .feature-row-modern { display: flex; align-items: center; gap: 15px; padding: 12px 16px; border-radius: 10px; transition: var(--transition); border: 2px solid transparent; }
+
+/* Feature Logic: Yes (Green), No (Red + Strike), Bonus (Blue) */
 .feature-row-modern.yes { background: var(--green-bg); color: var(--green-text); border-color: #c3e6cb; }
 .feature-row-modern.no { background: var(--red-bg); color: var(--red-text); border-color: #f5c6cb; }
-.feature-row-modern.bonus { background: #e3f2fd; color: #1565c0; border-color: #bbdefb; }
+.feature-row-modern.bonus { background: var(--blue-bg); color: var(--blue-text); border-color: #bbdefb; }
 
 .feature-icon-large { width: 32px; height: 32px; object-fit: contain; }
 .feature-text-large { font-size: 15px; font-weight: 700; }
@@ -81,8 +157,26 @@ h1 { font-size: 24px; font-weight: 800; color: var(--primary-color); margin: 0 0
 
 .notes-section h4 { margin: 0 0 10px 0; font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 0.05em; }
 .detail-footer { padding: 20px; border-top: 1px solid #f0f0f0; }
-.btn-primary { width: 100%; padding: 16px; background: var(--primary-color); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; transition: var(--transition); display: flex; justify-content: center; align-items: center; gap: 10px; }
+
+/* Primary Back Button: High contrast and visible */
+.btn-primary {
+    width: 100%;
+    padding: 16px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
 .btn-primary:hover { background: var(--accent-color); transform: translateY(-2px); }
 
+/* Tiny version stamp overlayed on bottom-left map */
 #version-stamp { position: fixed; bottom: 10px; left: 10px; font-size: 8px; color: rgba(0,0,0,0.3); z-index: 1000; pointer-events: none; }
 @media (max-width: 768px) { #version-stamp { display: none; } }

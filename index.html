@@ -1,9 +1,22 @@
 <!DOCTYPE html>
+<!--
+    UBC Study Spots - Web Discovery Tool
+    ------------------------------------
+    Source of Truth: CPEN 221 Gemini Agent Chat History
+    Latest Update: Integrated new Bonus categories (Bridge, Food, Tourist)
+
+    Key Features:
+    - Rank 67 UBC study spots by proximity using Geolocation.
+    - Search & Filter: Name, Status, Busy-ness, and 11 unique amenities.
+    - Design: Modern Inter font, UBC Blue theme, Mobile-responsive.
+    - Amenity Logic: Features (Red/Green buttons), Bonuses (Blue if Yes, Hidden if No).
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UBC Study Spots | Find Your Space</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,6 +30,7 @@
     <aside id="sidebar">
         <header class="sidebar-header">
             <h1 id="sidebar-title">UBC Study Spots</h1>
+
             <div class="search-bar">
                 <input type="text" id="search-input" placeholder="Search spots..." aria-label="Search study spots">
                 <button id="filter-btn" class="icon-btn" title="Filter Options" aria-label="Toggle filters">⚙️</button>
@@ -54,6 +68,9 @@
                     <label><input type="checkbox" id="filter-drinks"> Free Drinks</label>
                     <label><input type="checkbox" id="filter-view"> Good View</label>
                     <label><input type="checkbox" id="filter-couches"> Couches</label>
+                    <label><input type="checkbox" id="filter-bridge"> Cool Bridge</label>
+                    <label><input type="checkbox" id="filter-food"> Cheap Food</label>
+                    <label><input type="checkbox" id="filter-tourist"> Tourist Spot</label>
                 </div>
                 <button id="apply-filters" class="btn-primary-small">Apply Filters</button>
             </div>
@@ -76,9 +93,7 @@
 
             <div class="detail-body">
                 <p id="detail-description" class="description-text"></p>
-
                 <div id="detail-list" class="feature-list-modern"></div>
-
                 <div class="notes-section">
                     <h4>Notes</h4>
                     <p id="detail-notes"></p>
@@ -93,7 +108,7 @@
         </section>
     </aside>
 
-    <div id="version-stamp">v1.0.14</div>
+    <div id="version-stamp">v1.0.18</div>
 
     <script src="script.js"></script>
 </body>
